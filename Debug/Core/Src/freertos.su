@@ -1,1 +1,6 @@
-../Core/Src/freertos.c:27:13:StartLedTask	16	static
+../Core/Src/freertos.c:33:6:sendChar	16	static
+../Core/Src/freertos.c:38:6:sendString	16	static
+../Core/Src/freertos.c:67:6:BlinkTask	16	static
+../Core/Src/freertos.c:76:6:ButtonTask	88	static
+../Core/Src/freertos.c:109:6:uartHandler	80	static
+../Core/Src/freertos.c:127:6:MX_FREERTOS_Init	8	static

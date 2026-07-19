@@ -1,1 +1,6 @@
-../Core/Src/freertos.c:27:13:StartLedTask	1
+../Core/Src/freertos.c:33:6:sendChar	2
+../Core/Src/freertos.c:38:6:sendString	2
+../Core/Src/freertos.c:67:6:BlinkTask	1
+../Core/Src/freertos.c:76:6:ButtonTask	3
+../Core/Src/freertos.c:109:6:uartHandler	2
+../Core/Src/freertos.c:127:6:MX_FREERTOS_Init	1
