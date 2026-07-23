@@ -1,6 +1,8 @@
-../Core/Src/freertos.c:33:6:sendChar	16	static
-../Core/Src/freertos.c:38:6:sendString	16	static
-../Core/Src/freertos.c:67:6:BlinkTask	16	static
-../Core/Src/freertos.c:76:6:ButtonTask	88	static
-../Core/Src/freertos.c:109:6:uartHandler	80	static
-../Core/Src/freertos.c:127:6:MX_FREERTOS_Init	8	static
+../Drivers/CMSIS/Include/core_cm4.h:1684:22:__NVIC_EnableIRQ	16	static,ignoring_inline_asm
+../Core/Src/freertos.c:34:6:sendChar	16	static
+../Core/Src/freertos.c:39:6:sendString	16	static
+../Core/Src/freertos.c:68:6:BlinkTask	16	static
+../Core/Src/freertos.c:77:6:ButtonTask	88	static
+../Core/Src/freertos.c:105:6:USART2_IRQHandler	8	static
+../Core/Src/freertos.c:112:6:uartHandler	80	static
+../Core/Src/freertos.c:136:6:MX_FREERTOS_Init	8	static

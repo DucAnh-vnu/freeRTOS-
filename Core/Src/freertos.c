@@ -22,6 +22,7 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os2.h"
+#include <stdio.h>
 #define MASK(X) (1 << (X))
 
 typedef struct {
@@ -92,18 +93,20 @@ void ButtonTask(void *argument){
 		    {
 		        lastState = state;
 
-		        if (state) {
-		            snprintf(msg.text, sizeof(msg.text), "Released\r\n");
-		        	osDelay(20);
-		        }
-		        else {
-		            snprintf(msg.text, sizeof(msg.text), "Pressed\r\n");
-
-		        osMessageQueuePut(uartQueue, &msg, 0, 0);
-		        }
+		         snprintf(msg.text, sizeof(msg.text), state ? "Released\r\n" : "Pressed\r\n");
+		         osMessageQueuePut(uartQueue, &msg, 0, 0);
 		    }
 		}
 
+}
+
+
+volatile char rxChar;
+void USART2_IRQHandler(){
+	if (USART2->SR & USART_SR_RXNE){
+			rxChar = USART2->DR;
+			sendChar(rxChar);
+		}
 }
 
 void uartHandler(void *argument){
@@ -115,14 +118,20 @@ void uartHandler(void *argument){
 	GPIOA->AFR[0] |=  ((7 << (4*2)) | (7 << (4*3)));
 	USART2->CR1 |= USART_CR1_TE | USART_CR1_RE | USART_CR1_UE;
 	USART2->BRR = 139;
+	USART2->CR1 |= USART_CR1_RXNEIE;
+	NVIC_EnableIRQ(USART2_IRQn);
 
 	Msg_t msg;
 	for (;;){
 		if (osMessageQueueGet(uartQueue, &msg, NULL, osWaitForever) == osOK) {
-					sendString(msg.text);
+					//sendString(msg.text);
 		}
+
 	}
 }
+
+
+
 
 void MX_FREERTOS_Init(){
 	uartQueue = osMessageQueueNew(10,sizeof(Msg_t),NULL);
